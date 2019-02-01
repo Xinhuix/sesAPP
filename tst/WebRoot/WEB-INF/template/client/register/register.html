@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=0.6, maximum-scale=0.6"/>
+<title>分享注册</title>
+	<style type="text/css">
+		        .chooseBtn {
+            display: none;
+        }
+        .choose-label {
+            box-shadow: #ccc 0px 0px 0px 1px;
+            width: 40px;
+            height: 20px;
+            display: inline-block;
+            border-radius: 20px;
+            position: relative;
+            background-color: #bdbdbd;
+            overflow: hidden;
+        }
+        .choose-label:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            border-radius: 20px;
+            background-color: #fff;
+            z-index: 20;
+            -webkit-transition: all 0.5s;
+            transition: all 0.5s;
+        }
+
+        .chooseBtn:checked + label.choose-label:before {
+            left: 20px;
+        }
+
+        .chooseBtn:checked + label.choose-label {
+            background-color: #51ccee;
+        }
+		img{
+			width: 100%
+		}
+		#fxzc{
+			width: 100%;
+			height: auto;
+			margin: 0 auto;
+		}
+		.top{
+			width: 100%;
+			text-align: center;
+			height: auto;
+			margin: 0 auto;
+		}
+		.min{
+			width: 100%;
+			text-align: center;
+			height: auto;
+			margin: 0 auto;
+		}
+		input{
+			width: 70%;
+			height: 46px;
+			margin: 20px auto;
+			border-radius: 15px;
+			border:solid thin gray;
+			color: #848484;
+			padding-left: 32px;
+			font-size: 16px;
+		}
+		select{
+			width: 34%;
+			height: 46px;
+			margin: 20px auto;
+			border-radius-left: 15px;
+			border-color: #d7d7d7;
+			color: #848484;
+			padding-left: 32px;
+			font-size: 16px;
+			float: none;
+		}
+		.hqyzm{
+			height: 46px;
+			width: 12%;
+		}
+	</style>
+	<script type="text/javascript">
+		  window.onload=function(){
+			var xhr;
+			if(XMLHttpRequest) xhr=new XMLHttpRequest();
+			else xhr=new ActiveXObject("microsoft.XMLHttpRequest");
+			
+		  }
+	</script>
+</head>
+
+<body>
+	<div id="fxzc">
+	<div class="top">
+		<img src="/upload/topimg_01.png"  mode=”widthFix”> 
+	</div>
+	<div class="min">
+		<input type="text"    placeholder="请输入手机号"  >
+		<input type="text"    placeholder="6-16位的数字+字母";">
+		<input type="text"    placeholder="再次输入密码";">
+		<input style="width: 50%;height: 46px；" type="text"   placeholder="输入验证码";" class="yzm">
+		<button style="height:46px;border:solid thin cyan;border-top-right-radius:20px;background-color:#ccf;border-bottom-left-radius:20px;">获取验证码 </button><br/>
+<select name="地址选择"> 
+  <option value="0">北京</option> 
+<option value="1">上海</option> 
+</select> 
+		<select name="地址选择"> 
+<option value="0">昌平</option> 
+<option value="1">海淀</option> 
+</select> 
+		<div>
+	<p  style="color:red;font-size:12px;float:right;margin-right:40%;">《SES共享农业注册协议》、《用户隐私政策》</p><p style="float:right; font-size:12px;text-align:CENTER;">同意</p>
+<input style="padding-left: 10%;"  type="checkbox"  name="sex"   id="male"   class="chooseBtn" />
+<label for="male" class="choose-label"  style="margin:10px 5px 0 0;float:right;"></label>
+	</div>
+		<button style="color:#fff;margin: 12px auto;width: 70%; height: 46px; background-color: #ff6666;font-size: 18px;border-radius: 12px; ">立即注册</button>
+		<button style="color:#777777;margin: 12px auto;width: 40%; height: 46px; background-color: #fff;font-size: 18px;border-radius: 12px;border: #333333 ">下载app</button>
+		</div>
+</body>
+</html>

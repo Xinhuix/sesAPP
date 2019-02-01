@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 80%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript" src="${base}/resources/admin/js/jquery.js"></script>
+	   <script type="text/javascript" src="${base}/resources/admin/js/jquery.tools.js"></script>
+	   <script type="text/javascript" src="${base}/resources/admin/js/jquery.validate.js"></script>
+	   <script type="text/javascript" src="${base}/resources/admin/js/jquery.lSelect.js"></script>
+	   <script type="text/javascript" src="${base}/resources/admin/js/common.js"></script>
+	   <script type="text/javascript" src="${base}/resources/admin/js/input.js"></script>
+       <script type="text/javascript">
+
+
+	function fu(value) {
+		$.ajax({
+			url: " ../../Footprint/view.jhtml",
+			type: "POST",
+			data: 'date='+value,
+			dataType: "json",
+			cache: false,
+			success: function(message) {
+				var count = new Array();
+				var userid=new Array();
+				var use=new Array();
+				 for ( var i = 0; i <message.length; i++){
+					 count.push(message[i].count);
+					 userid.push(message[i].userid);
+					 use.push(message[i].username);
+					}
+				 var dom = document.getElementById("container");
+				 var myChart = echarts.init(dom);
+				 var app = {};
+				 option = null;
+				 option = {
+					title: {
+			                text: '用户活跃榜',
+			                show:true, 
+			                //subtext:"http://www.baidu.com",
+			               },
+			               tooltip: {
+			            	  
+			               },
+			             
+				     xAxis: {
+				         type: 'category',
+				         data: userid
+				        	 },
+				     yAxis: {
+				         type: 'value'
+				     },
+				     legend: {
+				         data:['用户','用户访问量']
+				     },
+				     series: [{
+				    	 name:'用户',
+				         data: count,
+				         type: 'bar'
+				     },{
+				    	 name:'用户访问量',
+				    	 data:count	,
+				    	 type:'line',
+				    	 label: {
+				             normal: {
+				                 show: true,
+				                 position: 'top',
+				             }
+				         }
+				     }
+				     
+				     ],
+				  
+				    	
+				 };
+				 ;
+				 if (option && typeof option === "object") {
+				     myChart.setOption(option, true);
+				 }
+				 myChart.on('click', function (params) {
+					 window.location.href="/admin/member/view.jhtml?id="+params.name+"";
+					});
+			}
+		}); 
+	}
+       </script>
+     
+ 	   [#assign userMap={"近七天":"7","一个月":"30","三个月":"90","近半年":"180","一整年":"360"}/]
+	   [#assign  keys=userMap?keys/]
+       <div style="width: 75%;height: 70px;display:flex;align-items:center;margin-left: 155px;">
+       	[#list keys as key]
+       <a href="javascript:0" style="background-color: #7599F8;border-radius: 10px;text-decoration: none;width:10%;height: 50%;border: 1px solid #6600ff;margin-left: 50px;padding-left: 46px;padding-top: 12px;"  onclick="fu(${userMap["${key}"]});"><font color="#F6F6F6">${key}</font></a>
+      [/#list]
+ </div> 
+
+   </body>
+</html>
